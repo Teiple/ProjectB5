@@ -1,0 +1,225 @@
+[gd_scene load_steps=29 format=3 uid="uid://c4k2kcfhr6hjf"]
+
+[ext_resource type="Script" path="res://src/scripts/player/player.gd" id="1_numrv"]
+[ext_resource type="Script" path="res://src/scripts/player/head.gd" id="2_evelg"]
+[ext_resource type="Script" path="res://src/scripts/player/camera_shaker.gd" id="3_kucf3"]
+[ext_resource type="Script" path="res://src/scripts/state_machine/state_machine.gd" id="3_ycd3u"]
+[ext_resource type="Script" path="res://src/scripts/player/player_state_run.gd" id="4_cwofk"]
+[ext_resource type="Script" path="res://src/scripts/player/player_state_move.gd" id="4_nsy7y"]
+[ext_resource type="PackedScene" uid="uid://b16t7cy4u3xcc" path="res://src/scenes/player/weapon_controller.tscn" id="6_gyshi"]
+[ext_resource type="Script" path="res://src/scripts/player/player_state_air.gd" id="6_pslpp"]
+[ext_resource type="PackedScene" uid="uid://bwy84paprocp2" path="res://src/scenes/components/hitbox_component.tscn" id="7_01wow"]
+[ext_resource type="Script" path="res://src/scripts/player/player_state_idle.gd" id="8_qnbl5"]
+[ext_resource type="Script" path="res://src/scripts/player/player_state_mantle.gd" id="9_8v7p4"]
+[ext_resource type="PackedScene" uid="uid://dkls35ip0uc3s" path="res://src/scenes/hud.tscn" id="12_mojfe"]
+[ext_resource type="PackedScene" uid="uid://cteufv677aphr" path="res://src/scenes/components/movement_sounds_component.tscn" id="13_c1n7k"]
+[ext_resource type="PackedScene" uid="uid://dya3ot8nxitgm" path="res://src/scenes/components/zone_interaction_component.tscn" id="16_hkucn"]
+[ext_resource type="PackedScene" uid="uid://fvr638awgdw3" path="res://src/scenes/components/objects_pusher_component.tscn" id="18_aic4s"]
+[ext_resource type="PackedScene" uid="uid://b70ye5t8vg3w" path="res://src/scenes/components/player_static_collider_component.tscn" id="18_b24wr"]
+[ext_resource type="PackedScene" uid="uid://blbjkmy2exy74" path="res://src/scenes/components/grab_component.tscn" id="18_df7fm"]
+[ext_resource type="PackedScene" uid="uid://bpyeva0mhelgn" path="res://src/scenes/components/debug/debug_collision_shapes_component.tscn" id="18_kd64k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_an1su"]
+radius = 0.2
+height = 1.7
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4nhiw"]
+radius = 0.2
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lr1dq"]
+radius = 0.2
+height = 0.65
+
+[sub_resource type="Curve" id="Curve_8yl8t"]
+min_value = -1.0
+_data = [Vector2(0, 0), 0.0, -7.58615, 0, 0, Vector2(0.250789, -1), 0.0, 0.0, 0, 0, Vector2(0.646953, 0.185804), 0.0, 0.0, 0, 0, Vector2(1, 0), 1.77604, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_85aky"]
+_data = [Vector2(0, 0), 0.0, -0.161752, 0, 0, Vector2(0.47379, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.148548, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ni7ea"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="Curve" id="Curve_vuy8c"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ny4dd"]
+radius = 0.2
+height = 1.7
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7wyqa"]
+radius = 0.2
+height = 1.7
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hujl1"]
+size = Vector3(0.2, 0.5, 0.2)
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 17
+floor_constant_speed = true
+platform_floor_layers = 1
+script = ExtResource("1_numrv")
+gravity = 25.0
+move_speed = 4.2
+move_accel = 5.0
+move_decel = 10.0
+in_air_acceleration = 3.4
+crouch_speed_reduction = 0.4
+coyote_time = 0.3
+jump_buffer_time = 0.3
+standing_collision_shape = SubResource("CapsuleShape3D_an1su")
+crouching_collision_shape = SubResource("CapsuleShape3D_4nhiw")
+lower_crouching_collision_shape = SubResource("CapsuleShape3D_lr1dq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("CapsuleShape3D_an1su")
+
+[node name="Head" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+script = ExtResource("2_evelg")
+head_bobbing = true
+head_stablize_speed = 24.0
+head_max_distance = 0.4
+crouch_toggle_speed = 10.0
+head_bob_amplitude = 0.005
+head_bob_frequency_multiplier = 4.3
+
+[node name="HeadBob" type="Node3D" parent="Head"]
+
+[node name="CameraShaker" type="Node3D" parent="Head/HeadBob"]
+script = ExtResource("3_kucf3")
+max_land_shake_amount = 0.06
+max_land_shake_duration = 0.6
+land_shake_curve = SubResource("Curve_8yl8t")
+max_mantle_shake_amount = -0.11
+mantle_shake_curve = SubResource("Curve_85aky")
+
+[node name="CameraSmoother" type="Node3D" parent="Head/HeadBob/CameraShaker"]
+unique_name_in_owner = true
+
+[node name="Camera" type="Camera3D" parent="Head/HeadBob/CameraShaker/CameraSmoother"]
+unique_name_in_owner = true
+current = true
+fov = 80.0
+
+[node name="WeaponController" parent="Head" instance=ExtResource("6_gyshi")]
+unique_name_in_owner = true
+
+[node name="HeadHitbox" parent="Head" instance=ExtResource("7_01wow")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/HeadHitbox"]
+shape = SubResource("BoxShape3D_ni7ea")
+
+[node name="ThirdPersonCamera" type="Camera3D" parent="Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0.5, 1.9)
+fov = 60.0
+
+[node name="StateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_ycd3u")
+initial_state = NodePath("Move/Run")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("4_nsy7y")
+upward_speed = 0.0
+step_up_push_multiplier = 1.0
+step_down_push_multiplier = 1.0
+land_height_threshold = 0.5
+
+[node name="Run" type="Node" parent="StateMachine/Move"]
+script = ExtResource("4_cwofk")
+
+[node name="Air" type="Node" parent="StateMachine/Move"]
+script = ExtResource("6_pslpp")
+velocity_preservation = 1.0
+
+[node name="Idle" type="Node" parent="StateMachine/Move"]
+script = ExtResource("8_qnbl5")
+
+[node name="Mantle" type="Node" parent="StateMachine/Move"]
+script = ExtResource("9_8v7p4")
+mantle_normalized_speed = 3.0
+mantle_curve = SubResource("Curve_vuy8c")
+push_speed = 0.5
+
+[node name="StepOffsetRaycastPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="StepUpRaycast" type="RayCast3D" parent="StepOffsetRaycastPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, -0.22)
+enabled = false
+target_position = Vector3(0, -0.36, 0)
+collision_mask = 17
+
+[node name="StepDownRaycast" type="RayCast3D" parent="StepOffsetRaycastPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+enabled = false
+target_position = Vector3(0, -0.36, 0)
+collision_mask = 17
+metadata/_edit_group_ = true
+
+[node name="StepOffsetSpaceCheck" type="ShapeCast3D" parent="StepOffsetRaycastPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, -0.22)
+enabled = false
+shape = SubResource("CapsuleShape3D_ny4dd")
+target_position = Vector3(0, 0, 0)
+collision_mask = 17
+
+[node name="HeightCheckRaycast" type="RayCast3D" parent="StepOffsetRaycastPivot"]
+unique_name_in_owner = true
+visible = false
+enabled = false
+target_position = Vector3(0, 2, 0)
+collision_mask = 17
+
+[node name="MantleRaycast" type="RayCast3D" parent="StepOffsetRaycastPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.22)
+enabled = false
+target_position = Vector3(0, -1.25, 0)
+collision_mask = 17
+
+[node name="CrouchToggleSpaceCheck" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+enabled = false
+shape = SubResource("CapsuleShape3D_7wyqa")
+target_position = Vector3(0, 0, 0)
+collision_mask = 17
+
+[node name="MovementSoundsComponent" parent="." instance=ExtResource("13_c1n7k")]
+editor_description = "Handling sounds such as footsteps, landing and jumping"
+
+[node name="ZoneInteractionComponent" parent="." instance=ExtResource("16_hkucn")]
+editor_description = "For interacting with pickups"
+enabled = false
+
+[node name="BodyHitbox" parent="." instance=ExtResource("7_01wow")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_hujl1")
+
+[node name="DebugCollisionShapesComponent" parent="." instance=ExtResource("18_kd64k")]
+editor_description = "Use in debug view to see player's collision shapes"
+
+[node name="PlayerStaticColliderComponent" parent="." instance=ExtResource("18_b24wr")]
+
+[node name="ObjectsPusherComponent" parent="." instance=ExtResource("18_aic4s")]
+
+[node name="GrabComponent" parent="." instance=ExtResource("18_df7fm")]
+editor_description = "Allows player to grab some physical objects.
+This node need to be a direct child of player"
+
+[node name="Hud" parent="." instance=ExtResource("12_mojfe")]

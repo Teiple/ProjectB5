@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbiocg6fsg870"]
+
+[ext_resource type="Texture2D" uid="uid://3vodbycd7v6j" path="res://assets/textures/ui/ui_theme.png" id="1_llgr4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06d5w"]
+atlas = ExtResource("1_llgr4")
+region = Rect2(576, 64, 32, 32)
+
+[node name="VolumnBar" type="NinePatchRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://08yvlja5y2c7"]
+
+[ext_resource type="Script" path="res://src/scripts/mem_test.gd" id="1_uedxj"]
+
+[node name="MemTest" type="Node3D"]
+script = ExtResource("1_uedxj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.858084, -0.234309, 0.456937, 0, 0.889832, 0.456289, -0.51351, -0.391534, 0.76355, 1.52982, 1.7648, 2.82474)
+
+[node name="MemLabel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "200"
+horizontal_alignment = 2

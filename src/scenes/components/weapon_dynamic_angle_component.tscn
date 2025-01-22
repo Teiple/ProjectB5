@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr383sog0qa46"]
+
+[ext_resource type="Script" path="res://src/scripts/components/weapon_dynamic_angle_component.gd" id="1_8f3s3"]
+
+[node name="WeaponDynamicAngleComponent" type="Node3D"]
+script = ExtResource("1_8f3s3")
+dynamic_angle_speed = 20.0
+dynamic_angle_smooth_speed = 5.0

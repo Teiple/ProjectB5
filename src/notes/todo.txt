@@ -1,0 +1,8 @@
+Fix: Stepping down can happen immediatly after stepping up stairs at the corner
+-> Fixed by forcing a duration right after the stepping up action in which the stepping down action cannot be taken place
+Fix: Player can mantle through solid bodies ontop of them
+-> Fixed by set the mantle raycast's local y position to be the player's head's local y position when detecting
+Add: Player's movement sounds (footsteps, jumping, landing)
+Add: A basic weapon controller
+Fix: Proper footsteps on stairs
+-> Fixed

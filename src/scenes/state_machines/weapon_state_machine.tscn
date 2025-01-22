@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://baqoacybs3sbf"]
+
+[ext_resource type="Script" path="res://src/scripts/state_machine/weapon_state_machine.gd" id="1_v4i5p"]
+[ext_resource type="Script" path="res://src/scripts/weapons/weapon_state_dropped.gd" id="2_t2oxc"]
+[ext_resource type="Script" path="res://src/scripts/weapons/weapon_state_used_by_player.gd" id="3_ewg4o"]
+[ext_resource type="Script" path="res://src/scripts/weapons/weapon_state_used_by_npc.gd" id="4_bi6aj"]
+[ext_resource type="Script" path="res://src/scripts/weapons/weapon_state_selected.gd" id="4_k7cfy"]
+[ext_resource type="Script" path="res://src/scripts/weapons/weapon_state_unselected.gd" id="5_edp6a"]
+
+[node name="WeaponStateMachine" type="Node"]
+script = ExtResource("1_v4i5p")
+initial_state = NodePath("Dropped")
+
+[node name="Dropped" type="Node" parent="."]
+script = ExtResource("2_t2oxc")
+
+[node name="UsedByPlayer" type="Node" parent="."]
+script = ExtResource("3_ewg4o")
+
+[node name="Selected" type="Node" parent="UsedByPlayer"]
+script = ExtResource("4_k7cfy")
+
+[node name="Unselected" type="Node" parent="UsedByPlayer"]
+script = ExtResource("5_edp6a")
+
+[node name="UsedByNPC" type="Node" parent="."]
+script = ExtResource("4_bi6aj")

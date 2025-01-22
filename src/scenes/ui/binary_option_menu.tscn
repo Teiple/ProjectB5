@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://jlmyourmsg7a"]
+
+[ext_resource type="Theme" uid="uid://bh30qyj6wj3mf" path="res://src/resources/ui/ui_theme.tres" id="1_7gpug"]
+[ext_resource type="Script" path="res://src/scripts/ui/binary_option_menu.gd" id="2_lgbjj"]
+
+[node name="BinaryOptionMenu" type="OptionButton"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7gpug")
+script = ExtResource("2_lgbjj")
+
+[connection signal="item_selected" from="." to="." method="_on_item_selected"]

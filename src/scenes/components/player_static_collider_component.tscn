@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b70ye5t8vg3w"]
+
+[ext_resource type="Script" path="res://src/scripts/components/player_static_collider_component.gd" id="1_uivrp"]
+
+[node name="PlayerStaticColliderComponent" type="Node3D"]
+editor_description = "A static collider surrounding the
+ player that dynamic objects cannot push"
+script = ExtResource("1_uivrp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]

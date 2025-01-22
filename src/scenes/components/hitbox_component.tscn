@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwy84paprocp2"]
+
+[ext_resource type="Script" path="res://src/scripts/components/hitbox_component.gd" id="1_jf40i"]
+[ext_resource type="PackedScene" uid="uid://bpyeva0mhelgn" path="res://src/scenes/components/debug/debug_collision_shapes_component.tscn" id="2_dyyvh"]
+
+[node name="HitboxComponent" type="Area3D" groups=["hitboxes"]]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("1_jf40i")
+unique = false
+
+[node name="DebugCollisionShapesComponent" parent="." instance=ExtResource("2_dyyvh")]

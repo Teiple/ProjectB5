@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=5 format=3 uid="uid://cu3qwm3lbtaml"]
+
+[ext_resource type="AudioStream" uid="uid://cn365jd2n4o7o" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Walk/Footsteps_Rock_Walk_03.wav" id="1_utnfe"]
+[ext_resource type="AudioStream" uid="uid://2kyl3lbhc0y7" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Walk/Footsteps_Rock_Walk_04.wav" id="2_ortia"]
+[ext_resource type="AudioStream" uid="uid://3ihi5r67s8s6" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Walk/Footsteps_Rock_Walk_05.wav" id="3_e7fxr"]
+[ext_resource type="AudioStream" uid="uid://g603bwsybo20" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Walk/Footsteps_Rock_Walk_06.wav" id="4_kv5p3"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("1_utnfe")
+stream_1/stream = ExtResource("2_ortia")
+stream_2/stream = ExtResource("3_e7fxr")
+stream_3/stream = ExtResource("4_kv5p3")

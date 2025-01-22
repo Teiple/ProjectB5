@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cry06asfbgy0f"]
+
+[ext_resource type="Script" path="res://src/scripts/pools/bullet_trail_pool.gd" id="1_vq6fu"]
+[ext_resource type="PackedScene" uid="uid://ctqonwjx1n7oa" path="res://src/scenes/bullet_trail.tscn" id="2_nfjkm"]
+
+[node name="BulletTrailPool" type="Node" groups=["pools"]]
+script = ExtResource("1_vq6fu")
+max_size = 50
+item_scene = ExtResource("2_nfjkm")

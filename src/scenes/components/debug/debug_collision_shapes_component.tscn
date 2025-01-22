@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpyeva0mhelgn"]
+
+[ext_resource type="Script" path="res://src/scripts/debug/debug_collision_shapes_component.gd" id="1_jh86b"]
+
+[node name="DebugCollisionShapesComponent" type="Node3D"]
+script = ExtResource("1_jh86b")

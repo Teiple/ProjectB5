@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqc6sy53vyu0r"]
+
+[ext_resource type="Script" path="res://src/scripts/zone.gd" id="1_qiemv"]
+[ext_resource type="PackedScene" uid="uid://bpyeva0mhelgn" path="res://src/scenes/components/debug/debug_collision_shapes_component.tscn" id="2_5h6v6"]
+
+[node name="Zone" type="Area3D" groups=["zones"]]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("1_qiemv")
+
+[node name="DebugCollisionShapesComponent" parent="." instance=ExtResource("2_5h6v6")]

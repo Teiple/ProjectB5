@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://cteufv677aphr"]
+
+[ext_resource type="Script" path="res://src/scripts/components/movement_sounds_component.gd" id="1_yje6l"]
+[ext_resource type="AudioStream" uid="uid://drdcbjkdgo6vy" path="res://src/resources/sounds/footsteps_snd.tres" id="2_5y6f7"]
+[ext_resource type="AudioStream" uid="uid://neaw5t2r88a4" path="res://src/resources/sounds/jump_snd.tres" id="3_1fh0b"]
+[ext_resource type="AudioStream" uid="uid://cn7lou3duosx2" path="res://src/resources/sounds/mantle_snd.tres" id="4_2nmv7"]
+[ext_resource type="AudioStream" uid="uid://cu3qwm3lbtaml" path="res://src/resources/sounds/land_soft_snd.tres" id="5_jkca3"]
+[ext_resource type="AudioStream" uid="uid://28eic280e5qp" path="res://src/resources/sounds/land_heavy_snd.tres" id="6_b42cd"]
+
+[node name="MovementSoundsComponent" type="Node3D"]
+script = ExtResource("1_yje6l")
+auto_step_threshold = 3
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5y6f7")
+volume_db = -5.0
+max_polyphony = 5
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1fh0b")
+volume_db = -5.0
+
+[node name="Mantle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2nmv7")
+pitch_scale = 0.8
+
+[node name="LandSoft" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jkca3")
+volume_db = -5.0
+
+[node name="LandHeavy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_b42cd")
+pitch_scale = 0.75

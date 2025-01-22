@@ -1,0 +1,165 @@
+[gd_scene load_steps=19 format=3 uid="uid://biy55p4cf4ko7"]
+
+[ext_resource type="Script" path="res://src/scripts/weapons/weapon.gd" id="1_5ebwd"]
+[ext_resource type="PackedScene" uid="uid://7rjf0yyhi478" path="res://assets/models/handgun.glb" id="1_tdrbp"]
+[ext_resource type="Resource" uid="uid://5rmed4rumlam" path="res://src/resources/weapons/wpn_handgun_stats.tres" id="2_beure"]
+[ext_resource type="Material" uid="uid://cqe0cebh8osao" path="res://src/resources/materials/wpn_handgun_mat.tres" id="4_2snt3"]
+[ext_resource type="PackedScene" uid="uid://baqoacybs3sbf" path="res://src/scenes/state_machines/weapon_state_machine.tscn" id="4_bus8n"]
+[ext_resource type="Material" uid="uid://cul7w7854qwsk" path="res://src/resources/materials/wpn_handgun_view_mat.tres" id="4_xux6v"]
+[ext_resource type="PackedScene" uid="uid://cqc6sy53vyu0r" path="res://src/scenes/zone.tscn" id="5_hb53i"]
+[ext_resource type="PackedScene" uid="uid://b3736x1vaf3si" path="res://src/scenes/components/weapon_raycast_component.tscn" id="8_4v2dr"]
+[ext_resource type="PackedScene" uid="uid://c1gaf0ne8e446" path="res://src/scenes/weapon_melee_component.tscn" id="9_umll3"]
+[ext_resource type="PackedScene" uid="uid://ce6pbu7237qay" path="res://src/scenes/components/weapon_projectile_component.tscn" id="10_81uxs"]
+
+[sub_resource type="Skin" id="Skin_3p8cn"]
+resource_name = "Skin"
+bind_count = 3
+bind/0/name = &"body"
+bind/0/bone = -1
+bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+bind/1/name = &"slide"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00308e-18, -0.0270355, 0.0457523)
+bind/2/name = &"mag"
+bind/2/bone = -1
+bind/2/pose = Transform3D(1, -5.43792e-08, 2.32134e-07, -3.55271e-15, 0.973642, 0.228083, -2.38419e-07, -0.228083, 0.973642, 4.80429e-09, 0.121551, 0.0201507)
+
+[sub_resource type="Animation" id="Animation_2sbgl"]
+resource_name = "wpn_handgun_fire"
+length = 0.233333
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("handgun/Skeleton3D:slide")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 6.00308e-18, 0.0270355, -0.0457523, 0.0333333, 1, 6.00308e-18, 0.0270355, -0.0457523, 0.0666667, 1, -3.0559e-09, 0.0270355, -0.0961198, 0.133333, 1, 6.00308e-18, 0.0270355, -0.0457523, 0.233333, 1, 6.00308e-18, 0.0270355, -0.0457523)
+tracks/1/type = "position_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("handgun/Skeleton3D:mag")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1.04733e-16, -0.113751, -0.0473432)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("handgun/Skeleton3D:mag")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.1148, -1.18421e-07, -1.36853e-08, 0.993389)
+
+[sub_resource type="Animation" id="Animation_p0x8i"]
+resource_name = "wpn_handgun_idle"
+length = 0.0333333
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("handgun/Skeleton3D:slide")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 6.00308e-18, 0.0270355, -0.0457523)
+tracks/1/type = "position_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("handgun/Skeleton3D:mag")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1.04733e-16, -0.113751, -0.0473432)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("handgun/Skeleton3D:mag")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.1148, -1.18421e-07, -1.36853e-08, 0.993389)
+
+[sub_resource type="Animation" id="Animation_g4vb3"]
+resource_name = "wpn_handgun_reload"
+length = 2.0
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("handgun/Skeleton3D:slide")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 6.00308e-18, 0.0270355, -0.0457523, 0.0333333, 1, 6.00308e-18, 0.0270355, -0.0457523, 0.0666667, 1, 6.00308e-18, 0.0270355, -0.057787, 0.1, 1, 6.00308e-18, 0.0270355, -0.080137, 0.133333, 1, -7.27596e-09, 0.0270355, -0.0921717, 1.46667, 1, -7.27596e-09, 0.0270355, -0.0921717, 1.5, 1, -7.27596e-09, 0.0270355, -0.080137, 1.53333, 1, -7.27596e-09, 0.0270355, -0.057787, 1.56667, 1, 6.00308e-18, 0.0270355, -0.0457523, 2, 1, 6.00308e-18, 0.0270355, -0.0457523)
+tracks/1/type = "position_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("handgun/Skeleton3D:mag")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1.04733e-16, -0.113751, -0.0473432, 0.0333333, 1, 1.04733e-16, -0.113751, -0.0473432, 0.0666667, 1, 7.42323e-16, -0.140266, -0.0535545, 0.1, 1, 3.5317e-16, -0.208646, -0.0695732, 0.133333, 1, 1.03551e-15, -0.302146, -0.0914762, 0.166667, 1, 1.77896e-15, -0.404019, -0.115341, 0.2, 1, 6.84944e-16, -0.497519, -0.137244, 0.233333, 1, -5.92385e-16, -0.5659, -0.153262, 0.266667, 1, -9.96515e-08, -0.592415, -0.159474, 0.3, 1, 0.0159186, -0.548414, -0.182705, 0.333333, 1, 0.055154, -0.443488, -0.238103, 0.366667, 1, 0.104925, -0.318255, -0.304223, 0.4, 1, 0.15245, -0.21333, -0.359621, 0.433333, 1, 0.184947, -0.169329, -0.382853, 0.466667, 1, 0.201802, -0.174678, -0.364434, 0.5, 1, 0.212026, -0.187503, -0.320343, 0.533333, 1, 0.217276, -0.202968, -0.26733, 0.566667, 1, 0.21921, -0.216238, -0.222145, 0.6, 1, 0.219487, -0.222479, -0.201537, 0.633333, 1, 0.212708, -0.22328, -0.199766, 0.666667, 1, 0.194595, -0.223617, -0.199326, 0.7, 1, 0.168476, -0.223739, -0.199314, 0.733333, 1, 0.137684, -0.223897, -0.198832, 0.766667, 1, 0.105548, -0.224338, -0.196977, 0.8, 1, 0.0751036, -0.226752, -0.18569, 0.833333, 1, 0.048191, -0.230663, -0.162136, 0.866667, 1, 0.026355, -0.233069, -0.133249, 0.9, 1, 0.0111396, -0.230969, -0.105966, 0.933333, 1, 0.00408903, -0.221361, -0.0872195, 0.966667, 1, 0.00209358, -0.200977, -0.0752865, 1.03333, 1, 0.000261698, -0.144735, -0.0555403, 1.06667, 1, 3.27125e-05, -0.122644, -0.0495439, 1.1, 1, 1.04733e-16, -0.113751, -0.0473432, 2, 1, 1.04733e-16, -0.113751, -0.0473432)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("handgun/Skeleton3D:mag")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.1148, -1.18421e-07, -1.36853e-08, 0.993389, 0.266667, 1, 0.1148, -1.18421e-07, -1.36853e-08, 0.993389, 0.3, 1, 0.112534, -0.00179752, 0.0123089, 0.99357, 0.333333, 1, 0.106229, -0.00664428, 0.0460563, 0.993252, 0.366667, 1, 0.0965533, -0.0137207, 0.0964838, 0.990545, 0.4, 1, 0.0842689, -0.0221287, 0.158313, 0.983538, 0.466667, 1, 0.0561476, -0.0389936, 0.291643, 0.954081, 0.5, 1, 0.0429439, -0.0460997, 0.350633, 0.934391, 0.533333, 1, 0.0321025, -0.0520059, 0.397405, 0.915606, 0.566667, 1, 0.0248109, -0.0566564, 0.427964, 0.901677, 0.6, 1, 0.0221437, -0.0600532, 0.438777, 0.896313, 0.633333, 1, 0.0414232, -0.0710468, 0.43575, 0.896303, 0.666667, 1, 0.0877631, -0.092941, 0.424892, 0.896173, 0.7, 1, 0.14367, -0.117295, 0.402785, 0.896307, 0.733333, 1, 0.191475, -0.135741, 0.367321, 0.899993, 0.766667, 1, 0.213831, -0.140158, 0.317144, 0.913264, 0.8, 1, 0.215574, -0.122752, 0.249934, 0.935945, 0.833333, 1, 0.212569, -0.0886089, 0.173168, 0.957588, 0.866667, 1, 0.204622, -0.0497438, 0.100603, 0.972386, 0.9, 1, 0.19274, -0.018, 0.0452029, 0.980043, 0.933333, 1, 0.178266, -0.00376152, 0.0175797, 0.983818, 0.966667, 1, 0.161778, -0.0019259, 0.00900053, 0.986784, 1, 1, 0.14481, -0.000812594, 0.00379726, 0.989452, 1.03333, 1, 0.129732, -0.000240856, 0.00112512, 0.991549, 1.06667, 1, 0.118931, -3.02096e-05, 0.000140624, 0.992903, 1.1, 1, 0.1148, -1.18421e-07, -1.36853e-08, 0.993389, 2, 1, 0.1148, -1.18421e-07, -1.36853e-08, 0.993389)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kvkge"]
+_data = {
+"wpn_handgun_fire": SubResource("Animation_2sbgl"),
+"wpn_handgun_idle": SubResource("Animation_p0x8i"),
+"wpn_handgun_reload": SubResource("Animation_g4vb3")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ycp0q"]
+size = Vector3(0.0446777, 0.0719604, 0.169952)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gt2bg"]
+size = Vector3(0.0310059, 0.0653534, 0.132263)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5cqkg"]
+
+[node name="Handgun" type="RigidBody3D"]
+script = ExtResource("1_5ebwd")
+weapon_stats = ExtResource("2_beure")
+weapon_view_mat = ExtResource("4_xux6v")
+
+[node name="handgun" parent="." instance=ExtResource("1_tdrbp")]
+
+[node name="Skeleton3D" parent="handgun/handgun" index="0"]
+bones/1/position = Vector3(6.00308e-18, 0.0270355, -0.0457523)
+bones/2/position = Vector3(1.04733e-16, -0.113751, -0.0473432)
+bones/2/rotation = Quaternion(0.1148, -1.18421e-07, -1.36853e-08, 0.993389)
+
+[node name="handgun_mesh_w_anim" parent="handgun/handgun/Skeleton3D" index="0"]
+skin = SubResource("Skin_3p8cn")
+surface_material_override/0 = ExtResource("4_2snt3")
+
+[node name="AnimationPlayer" parent="handgun" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_kvkge")
+}
+
+[node name="WeaponStateMachine" parent="." instance=ExtResource("4_bus8n")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0211487, 0.0264435)
+shape = SubResource("BoxShape3D_ycp0q")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -4.234e-08, -3.28482e-08, 4.234e-08, 0.248521, 0.968627, -3.28482e-08, -0.968627, 0.248521, 1.37855e-10, -0.0376115, -0.0441052)
+shape = SubResource("BoxShape3D_gt2bg")
+
+[node name="PickupZone" parent="." instance=ExtResource("5_hb53i")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupZone"]
+shape = SubResource("SphereShape3D_5cqkg")
+
+[node name="MuzzlePoint" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0373175, 0.120245)
+
+[node name="WeaponRaycastComponent" parent="." node_paths=PackedStringArray("starting_point_transform_visual") instance=ExtResource("8_4v2dr")]
+starting_point_transform_visual = NodePath("../MuzzlePoint")
+
+[node name="WeaponProjectileComponent" parent="." node_paths=PackedStringArray("starting_point_transform", "forward_shooting_direction_transform") instance=ExtResource("10_81uxs")]
+starting_point_transform = NodePath("../MuzzlePoint")
+forward_shooting_direction_transform = NodePath("../MuzzlePoint")
+
+[node name="WeaponMeleeComponent" parent="." instance=ExtResource("9_umll3")]
+
+[editable path="handgun"]

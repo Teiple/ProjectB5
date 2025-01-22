@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dya3ot8nxitgm"]
+
+[ext_resource type="Script" path="res://src/scripts/components/zone_interaction_component.gd" id="1_enef1"]
+
+[node name="ZoneInteractionComponent" type="ShapeCast3D"]
+target_position = Vector3(0, 0, 0)
+max_results = 4
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("1_enef1")
+
+[node name="UpdateTimer" type="Timer" parent="."]
+wait_time = 0.08

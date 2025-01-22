@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://fvr638awgdw3"]
+
+[ext_resource type="Script" path="res://src/scripts/components/object_pusher_component.gd" id="1_giqdi"]
+[ext_resource type="PackedScene" uid="uid://bpyeva0mhelgn" path="res://src/scenes/components/debug/debug_collision_shapes_component.tscn" id="2_svne1"]
+
+[node name="ObjectsPusherComponent" type="Node3D"]
+script = ExtResource("1_giqdi")
+
+[node name="BodyShapeCast" type="ShapeCast3D" parent="."]
+enabled = false
+target_position = Vector3(0, 0, 0)
+collision_mask = 17
+
+[node name="GroundShapeCast" type="ShapeCast3D" parent="."]
+enabled = false
+target_position = Vector3(0, 0, 0)
+collision_mask = 17
+
+[node name="DebugCollisionShapesComponent" parent="." instance=ExtResource("2_svne1")]
+debugging = true

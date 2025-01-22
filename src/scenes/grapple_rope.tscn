@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dc6b4uyjp1vkp"]
+
+[ext_resource type="Script" path="res://src/scripts/rope.gd" id="1_vuiti"]
+[ext_resource type="Shader" path="res://src/shaders/rope.gdshader" id="3_ru1t5"]
+
+[sub_resource type="Curve" id="Curve_wdod1"]
+_data = [Vector2(0, 0), 0.0, 6.69652, 0, 0, Vector2(1, 0), -0.0736891, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bnwpa"]
+size = Vector2(0.02, 1)
+subdivide_depth = 29
+center_offset = Vector3(0, 0.5, 0)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_ofb2g"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.497706, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xx2lj"]
+curve = SubResource("Curve_ofb2g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f1am5"]
+render_priority = 0
+shader = ExtResource("3_ru1t5")
+shader_parameter/albedo = Color(0.116127, 0.116127, 0.116127, 1)
+shader_parameter/point_size = null
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/rope_length = 1.0
+shader_parameter/rope_max_amplitude = 0.05
+shader_parameter/time_scale = 1.0
+shader_parameter/frequency = 25.0
+shader_parameter/y_scale = 1.0
+shader_parameter/strength_curve = SubResource("CurveTexture_xx2lj")
+
+[node name="GrappleRope" type="Node3D"]
+script = ExtResource("1_vuiti")
+launch_curve = SubResource("Curve_wdod1")
+normalized_launching_speed = 4.0
+max_amplitude = 0.2
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bnwpa")
+surface_material_override/0 = SubResource("ShaderMaterial_f1am5")

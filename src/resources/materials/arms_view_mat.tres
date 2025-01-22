@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ck3sl13xqveab"]
+
+[ext_resource type="Shader" path="res://src/shaders/view.gdshader" id="1_n4sy2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_n4sy2")
+shader_parameter/albedo = Color(0.145584, 0.361886, 0.331267, 1)
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = null
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/fov = 77.0

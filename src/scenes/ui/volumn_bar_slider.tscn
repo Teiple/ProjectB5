@@ -1,0 +1,363 @@
+[gd_scene load_steps=11 format=3 uid="uid://dweqbtqmphw6"]
+
+[ext_resource type="Script" path="res://src/scripts/ui/volume_bar_slider.gd" id="1_go4mh"]
+[ext_resource type="PackedScene" uid="uid://cbiocg6fsg870" path="res://src/scenes/ui/volume_bar.tscn" id="2_0k3wt"]
+[ext_resource type="Texture2D" uid="uid://3vodbycd7v6j" path="res://assets/textures/ui/ui_theme.png" id="3_tcf6u"]
+
+[sub_resource type="Curve" id="Curve_m07st"]
+_data = [Vector2(0, 0), 0.0, 3.61645, 0, 0, Vector2(0.509766, 0.532076), -0.291637, -0.291637, 0, 0, Vector2(1, 1), 3.01592, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0arj"]
+atlas = ExtResource("3_tcf6u")
+region = Rect2(512, 128, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeysr"]
+atlas = ExtResource("3_tcf6u")
+region = Rect2(544, 128, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbcqv"]
+atlas = ExtResource("3_tcf6u")
+region = Rect2(528, 128, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccss8"]
+atlas = ExtResource("3_tcf6u")
+region = Rect2(560, 128, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqndy"]
+atlas = ExtResource("3_tcf6u")
+region = Rect2(512, 160, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06d5w"]
+atlas = ExtResource("3_tcf6u")
+region = Rect2(576, 64, 32, 32)
+
+[node name="VolumnBarSlider" type="Control"]
+custom_minimum_size = Vector2(120, 64)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_go4mh")
+bar_height_curve = SubResource("Curve_m07st")
+volumn_bar_enabled_color = Color(1, 0.760784, 0, 1)
+volumn_bar_disabled_color = Color(0.466181, 0.466181, 0.466181, 1)
+volumn_bar_spacing = 1
+volumn_bar_scene = ExtResource("2_0k3wt")
+volumn_bar_count = 16
+value = 1.0
+
+[node name="DecreaseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_h0arj")
+texture_pressed = SubResource("AtlasTexture_eeysr")
+texture_hover = SubResource("AtlasTexture_fbcqv")
+texture_disabled = SubResource("AtlasTexture_ccss8")
+texture_focused = SubResource("AtlasTexture_hqndy")
+flip_h = true
+
+[node name="Bars" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+metadata/_edit_group_ = true
+
+[node name="VolumnBar17" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_top = 411.0
+offset_right = 27.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar18" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 28.0
+offset_top = 336.0
+offset_right = 55.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar19" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 56.0
+offset_top = 284.0
+offset_right = 83.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar20" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 84.0
+offset_top = 251.0
+offset_right = 111.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar21" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 112.0
+offset_top = 233.0
+offset_right = 139.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar22" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 140.0
+offset_top = 228.0
+offset_right = 167.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar23" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 168.0
+offset_top = 231.0
+offset_right = 195.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar24" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 196.0
+offset_top = 239.0
+offset_right = 223.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar25" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 224.0
+offset_top = 246.0
+offset_right = 251.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar26" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 252.0
+offset_top = 249.0
+offset_right = 279.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar27" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 280.0
+offset_top = 243.0
+offset_right = 307.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar28" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 308.0
+offset_top = 226.0
+offset_right = 335.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar29" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 336.0
+offset_top = 196.0
+offset_right = 363.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar30" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 364.0
+offset_top = 150.0
+offset_right = 391.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar31" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 392.0
+offset_top = 86.0
+offset_right = 419.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VolumnBar32" type="NinePatchRect" parent="Bars" instance=ExtResource("2_0k3wt")]
+modulate = Color(1, 0.760784, 0, 1)
+layout_mode = 0
+offset_left = 420.0
+offset_right = 447.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_06d5w")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="IncreaseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -17.0
+offset_right = -8.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_h0arj")
+texture_pressed = SubResource("AtlasTexture_eeysr")
+texture_hover = SubResource("AtlasTexture_fbcqv")
+texture_disabled = SubResource("AtlasTexture_ccss8")
+texture_focused = SubResource("AtlasTexture_hqndy")
+
+[connection signal="pressed" from="DecreaseButton" to="." method="on_decrease_button_pressed"]
+[connection signal="gui_input" from="Bars" to="." method="_on_bars_gui_input"]
+[connection signal="item_rect_changed" from="Bars" to="." method="_on_bars_item_rect_changed"]
+[connection signal="pressed" from="IncreaseButton" to="." method="on_increase_button_pressed"]

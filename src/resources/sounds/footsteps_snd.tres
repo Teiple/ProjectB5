@@ -1,0 +1,26 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=11 format=3 uid="uid://drdcbjkdgo6vy"]
+
+[ext_resource type="AudioStream" uid="uid://bt1rxxhgxtxmy" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Run/Footsteps_Rock_Run_01.wav" id="1_7fal6"]
+[ext_resource type="AudioStream" uid="uid://xpdu234cavbj" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Run/Footsteps_Rock_Run_02.wav" id="2_dstwo"]
+[ext_resource type="AudioStream" uid="uid://buwrpr78wrc2n" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Run/Footsteps_Rock_Run_03.wav" id="3_r01uc"]
+[ext_resource type="AudioStream" uid="uid://bw01gpdqi77rx" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Run/Footsteps_Rock_Run_04.wav" id="4_ujg5f"]
+[ext_resource type="AudioStream" uid="uid://dd37wsv3nqkke" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Run/Footsteps_Rock_Run_05.wav" id="5_jqqmp"]
+[ext_resource type="AudioStream" uid="uid://c4547mkyx35vc" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Run/Footsteps_Rock_Run_06.wav" id="6_hskqn"]
+[ext_resource type="AudioStream" uid="uid://cs4q4ga1yjbwy" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Run/Footsteps_Rock_Run_07.wav" id="7_53mry"]
+[ext_resource type="AudioStream" uid="uid://bevorxa0kajpa" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Run/Footsteps_Rock_Run_08.wav" id="8_mm1n6"]
+[ext_resource type="AudioStream" uid="uid://dslqxsau73aun" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Run/Footsteps_Rock_Run_09.wav" id="9_60prl"]
+[ext_resource type="AudioStream" uid="uid://c7iumvd0kpgyu" path="res://assets/sounds/from_nox_sound_design/Footsteps_Rock_Run/Footsteps_Rock_Run_10.wav" id="10_iqp5w"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 10
+stream_0/stream = ExtResource("1_7fal6")
+stream_1/stream = ExtResource("2_dstwo")
+stream_2/stream = ExtResource("3_r01uc")
+stream_3/stream = ExtResource("4_ujg5f")
+stream_4/stream = ExtResource("5_jqqmp")
+stream_5/stream = ExtResource("6_hskqn")
+stream_6/stream = ExtResource("7_53mry")
+stream_7/stream = ExtResource("8_mm1n6")
+stream_8/stream = ExtResource("9_60prl")
+stream_9/stream = ExtResource("10_iqp5w")

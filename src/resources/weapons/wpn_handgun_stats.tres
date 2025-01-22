@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://5rmed4rumlam"]
+
+[ext_resource type="Script" path="res://src/scripts/weapons/weapon_stats.gd" id="1_h3x0g"]
+
+[resource]
+script = ExtResource("1_h3x0g")
+weapon_name = "handgun"
+damage_per_projectile = 5.0
+knock_back_force_per_projectile = 1.0
+projectiles_per_shot = 1
+clip_size = 20
+max_angle = 0.0174533
+fire_rate = 0.2
+hitscan = false
+projectile_speed = 40.0
+shotgun_reload = false
+shotgun_reload_amount = 1
+relative_position = Vector3(-0.00452907, 0.131573, 0.0402096)
+relative_rotation = Vector3(-88.7035, -96.9515, -69.9643)
+rapid_fire = true
+equip_speed_multiplier = 2.0
+fire_speed_multiplier = 1.0
+reload_speed_multiplier = 1.3
+melee_speed_multiplier = 1.2
+holster_speed_multiplier = 2.0
+unscaled_reload_mark = 1.0
+unscaled_reload_start_mark = -1.0
+unscaled_reload_mid_mark = -1.0
+unscaled_reload_end_mark = -1.0
+unscaled_melee_mark = 0.1

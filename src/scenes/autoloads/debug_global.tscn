@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5ybfqlmqpyf8"]
+
+[ext_resource type="Script" path="res://src/scripts/autoloads/debug_global.gd" id="1_j1oyd"]
+
+[node name="DebugGlobal" type="Node"]
+script = ExtResource("1_j1oyd")

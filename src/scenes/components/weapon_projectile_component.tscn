@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce6pbu7237qay"]
+
+[ext_resource type="Script" path="res://src/scripts/components/weapon_projectile_component.gd" id="1_aapiq"]
+
+[node name="WeaponProjectileComponent" type="Node3D"]
+script = ExtResource("1_aapiq")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+enabled = false
+exclude_parent = false
+collision_mask = 25

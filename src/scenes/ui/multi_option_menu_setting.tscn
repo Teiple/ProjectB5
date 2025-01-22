@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnmr2hutwxtf5"]
+
+[ext_resource type="Script" path="res://src/scripts/ui/multi_option_menu_setting.gd" id="1_4bwmp"]
+[ext_resource type="PackedScene" uid="uid://chk8oek08ssse" path="res://src/scenes/ui/multi_option_menu.tscn" id="2_vpc5d"]
+
+[node name="MultiOptionMenuSetting" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+script = ExtResource("1_4bwmp")
+
+[node name="MultiOptionMenu" parent="." instance=ExtResource("2_vpc5d")]
+layout_mode = 2

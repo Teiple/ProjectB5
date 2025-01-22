@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3736x1vaf3si"]
+
+[ext_resource type="Script" path="res://src/scripts/components/weapon_raycast_component.gd" id="1_6cipr"]
+
+[node name="WeaponRaycastComponent" type="Node3D"]
+script = ExtResource("1_6cipr")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+enabled = false
+collision_mask = 9
+collide_with_areas = true

@@ -1,0 +1,59 @@
+[gd_scene load_steps=14 format=3 uid="uid://mc5eilhj50rk"]
+
+[ext_resource type="Script" path="res://src/scripts/weapons/weapon.gd" id="1_fgfwl"]
+[ext_resource type="Resource" uid="uid://l4mohylxmkyy" path="res://src/resources/weapons/wpn_smg_stats.tres" id="2_knth3"]
+[ext_resource type="PackedScene" uid="uid://cvsab7k1jfnrr" path="res://assets/models/smg.glb" id="2_sl4h0"]
+[ext_resource type="Material" uid="uid://dkgdx7u4564pu" path="res://src/resources/materials/wpn_smg_mat.tres" id="3_1mdxy"]
+[ext_resource type="Material" uid="uid://cbenur51nyj81" path="res://src/resources/materials/wpn_smg_view_mat.tres" id="3_u7ohq"]
+[ext_resource type="PackedScene" uid="uid://baqoacybs3sbf" path="res://src/scenes/state_machines/weapon_state_machine.tscn" id="4_odxvi"]
+[ext_resource type="PackedScene" uid="uid://cqc6sy53vyu0r" path="res://src/scenes/zone.tscn" id="5_4gyfi"]
+[ext_resource type="PackedScene" uid="uid://b3736x1vaf3si" path="res://src/scenes/components/weapon_raycast_component.tscn" id="8_t2bla"]
+[ext_resource type="PackedScene" uid="uid://c1gaf0ne8e446" path="res://src/scenes/weapon_melee_component.tscn" id="9_ujl1y"]
+[ext_resource type="PackedScene" uid="uid://ce6pbu7237qay" path="res://src/scenes/components/weapon_projectile_component.tscn" id="9_xw8g5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l3r3w"]
+size = Vector3(0.0393066, 0.102112, 0.360107)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p3xia"]
+size = Vector3(0.029541, 0.083313, 0.142822)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nup4f"]
+
+[node name="SMG" type="RigidBody3D"]
+script = ExtResource("1_fgfwl")
+weapon_stats = ExtResource("2_knth3")
+weapon_view_mat = ExtResource("3_u7ohq")
+
+[node name="smg" parent="." instance=ExtResource("2_sl4h0")]
+
+[node name="smg_mesh_w_anim" parent="smg/smg/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("3_1mdxy")
+
+[node name="WeaponStateMachine" parent="." instance=ExtResource("4_odxvi")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0474548, -0.0111084)
+shape = SubResource("BoxShape3D_l3r3w")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -4.26216e-08, -3.40116e-08, 4.26216e-08, 0.221906, 0.975068, -3.40116e-08, -0.975068, 0.221906, -2.62799e-09, -0.0431615, -0.065428)
+shape = SubResource("BoxShape3D_p3xia")
+
+[node name="PickupZone" parent="." instance=ExtResource("5_4gyfi")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupZone"]
+shape = SubResource("SphereShape3D_nup4f")
+
+[node name="WeaponRaycastComponent" parent="." node_paths=PackedStringArray("starting_point_transform_visual") instance=ExtResource("8_t2bla")]
+starting_point_transform_visual = NodePath("../MuzzlePoint")
+
+[node name="WeaponProjectileComponent" parent="." node_paths=PackedStringArray("starting_point_transform", "forward_shooting_direction_transform") instance=ExtResource("9_xw8g5")]
+starting_point_transform = NodePath("../MuzzlePoint")
+forward_shooting_direction_transform = NodePath("../MuzzlePoint")
+
+[node name="MuzzlePoint" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0344396, 0.179851)
+
+[node name="WeaponMeleeComponent" parent="." instance=ExtResource("9_ujl1y")]
+
+[editable path="smg"]

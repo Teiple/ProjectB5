@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://shvkcf03yq6k"]
+
+[ext_resource type="Script" path="res://src/scripts/projectile_pool.gd" id="1_qhre3"]
+[ext_resource type="PackedScene" uid="uid://cardlhn2qlxoq" path="res://src/scenes/weapon_projectile.tscn" id="2_7lef4"]
+
+[node name="ProjectilePool" type="Node" groups=["pools"]]
+script = ExtResource("1_qhre3")
+max_size = 50
+item_scene = ExtResource("2_7lef4")

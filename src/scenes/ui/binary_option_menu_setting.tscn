@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://do4ijwaxnpkjh"]
+
+[ext_resource type="Script" path="res://src/scripts/ui/binary_option_menu_setting.gd" id="1_pt37v"]
+[ext_resource type="PackedScene" uid="uid://jlmyourmsg7a" path="res://src/scenes/ui/binary_option_menu.tscn" id="2_6l1bj"]
+
+[node name="BinaryOptionMenuSetting" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+script = ExtResource("1_pt37v")
+
+[node name="BinaryOptionMenu" parent="." instance=ExtResource("2_6l1bj")]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true

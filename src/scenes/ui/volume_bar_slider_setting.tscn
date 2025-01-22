@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7at8o1pe44ma"]
+
+[ext_resource type="Script" path="res://src/scripts/ui/volume_bar_slider_setting.gd" id="1_5gndj"]
+[ext_resource type="PackedScene" uid="uid://dweqbtqmphw6" path="res://src/scenes/ui/volumn_bar_slider.tscn" id="2_63xno"]
+
+[node name="VolumnBarSliderSetting" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5gndj")
+
+[node name="VolumnBarSlider" parent="." instance=ExtResource("2_63xno")]
+layout_mode = 2

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctqonwjx1n7oa"]
+
+[ext_resource type="Shader" path="res://src/shaders/stretched_billboard.gdshader" id="1_cfrk0"]
+[ext_resource type="Script" path="res://src/scripts/bullet_trail.gd" id="1_tch4o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6n8n7"]
+render_priority = 0
+shader = ExtResource("1_cfrk0")
+shader_parameter/albedo = Color(1, 1, 0, 1)
+shader_parameter/point_size = null
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+
+[sub_resource type="QuadMesh" id="QuadMesh_yit0b"]
+size = Vector2(0.01, 0.2)
+
+[node name="BulletTrail" type="Node3D"]
+script = ExtResource("1_tch4o")
+move_speed = 25.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 0, -3.82137e-15, 4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_6n8n7")
+mesh = SubResource("QuadMesh_yit0b")

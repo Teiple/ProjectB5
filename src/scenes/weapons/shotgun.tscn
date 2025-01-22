@@ -1,0 +1,64 @@
+[gd_scene load_steps=14 format=3 uid="uid://jhb7kpdjltue"]
+
+[ext_resource type="Script" path="res://src/scripts/weapons/weapon.gd" id="1_jnybf"]
+[ext_resource type="Resource" uid="uid://bmhmwg4pdma65" path="res://src/resources/weapons/wpn_shotgun_stats.tres" id="2_emfqn"]
+[ext_resource type="PackedScene" uid="uid://cushmp4dx4g07" path="res://assets/models/shotgun.glb" id="2_je3qk"]
+[ext_resource type="Material" uid="uid://cdf834aqgy18h" path="res://src/resources/materials/wpn_shotgun_mat.tres" id="4_ebrws"]
+[ext_resource type="Material" uid="uid://8nvo43voylxk" path="res://src/resources/materials/wpn_shotgun_view_mat.tres" id="4_w0ri2"]
+[ext_resource type="PackedScene" uid="uid://baqoacybs3sbf" path="res://src/scenes/state_machines/weapon_state_machine.tscn" id="6_wh24a"]
+[ext_resource type="PackedScene" uid="uid://cqc6sy53vyu0r" path="res://src/scenes/zone.tscn" id="7_4q6cs"]
+[ext_resource type="PackedScene" uid="uid://b3736x1vaf3si" path="res://src/scenes/components/weapon_raycast_component.tscn" id="8_kgf24"]
+[ext_resource type="PackedScene" uid="uid://c1gaf0ne8e446" path="res://src/scenes/weapon_melee_component.tscn" id="9_5kybo"]
+[ext_resource type="PackedScene" uid="uid://ce6pbu7237qay" path="res://src/scenes/components/weapon_projectile_component.tscn" id="9_j8d23"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a36br"]
+size = Vector3(0.0380859, 0.0996094, 0.650574)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ov3ua"]
+size = Vector3(0.03125, 0.124756, 0.0817108)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qxgl5"]
+
+[node name="Shotgun" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_jnybf")
+weapon_stats = ExtResource("2_emfqn")
+weapon_view_mat = ExtResource("4_w0ri2")
+
+[node name="shotgun" parent="." instance=ExtResource("2_je3qk")]
+
+[node name="Skeleton3D" parent="shotgun/shotgun" index="0"]
+bones/1/rotation = Quaternion(0.707107, 3.9056e-07, 3.9056e-07, 0.707107)
+
+[node name="shotgun_mesh_w_anim" parent="shotgun/shotgun/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("4_ebrws")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0382759, 0.0495911)
+shape = SubResource("BoxShape3D_a36br")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.973663, -0.227994, 0, 0.227994, 0.973663, 0, -0.0344094, -0.0576086)
+shape = SubResource("BoxShape3D_ov3ua")
+
+[node name="WeaponStateMachine" parent="." instance=ExtResource("6_wh24a")]
+
+[node name="PickupZone" parent="." instance=ExtResource("7_4q6cs")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupZone"]
+shape = SubResource("SphereShape3D_qxgl5")
+
+[node name="MuzzlePoint" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.46208e-09, 0.0523433, 0.392639)
+
+[node name="WeaponRaycastComponent" parent="." node_paths=PackedStringArray("starting_point_transform_visual") instance=ExtResource("8_kgf24")]
+starting_point_transform_visual = NodePath("../MuzzlePoint")
+
+[node name="WeaponProjectileComponent" parent="." node_paths=PackedStringArray("starting_point_transform", "forward_shooting_direction_transform") instance=ExtResource("9_j8d23")]
+starting_point_transform = NodePath("../MuzzlePoint")
+forward_shooting_direction_transform = NodePath("../MuzzlePoint")
+
+[node name="WeaponMeleeComponent" parent="." instance=ExtResource("9_5kybo")]
+
+[editable path="shotgun"]

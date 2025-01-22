@@ -1,0 +1,249 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq3l2ejra7wtp"]
+
+[ext_resource type="Theme" uid="uid://bh30qyj6wj3mf" path="res://src/resources/ui/ui_theme.tres" id="1_boh1k"]
+[ext_resource type="PackedScene" uid="uid://do4ijwaxnpkjh" path="res://src/scenes/ui/binary_option_menu_setting.tscn" id="2_6lwg8"]
+[ext_resource type="Script" path="res://src/scripts/ui/settings_menu.gd" id="2_elw2p"]
+[ext_resource type="PackedScene" uid="uid://bnmr2hutwxtf5" path="res://src/scenes/ui/multi_option_menu_setting.tscn" id="2_hs75q"]
+[ext_resource type="PackedScene" uid="uid://bktlfhj5rtdrs" path="res://src/scenes/ui/slider_setting.tscn" id="4_mpqnh"]
+[ext_resource type="PackedScene" uid="uid://c7at8o1pe44ma" path="res://src/scenes/ui/volume_bar_slider_setting.tscn" id="5_uk00f"]
+
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("settings")]
+editor_description = "Remember to add all setting nodes into the settings array for saving and loading setting data"
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_boh1k")
+script = ExtResource("2_elw2p")
+settings = [NodePath("MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer2/VsyncSetting"), NodePath("MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/GridContainer/VBoxContainer/MasterVolumeSetting"), NodePath("MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer/ResolutionSetting"), NodePath("MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/GridContainer/VBoxContainer2/SFXVolumeSetting"), NodePath("MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer3/FullscreenSetting"), NodePath("MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer/GridContainer/VBoxContainer/MouseSensitivitySettingSlider"), NodePath("MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer/GridContainer/VBoxContainer2/MouseFilterSetting"), NodePath("MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer4/FPSLimitSetting"), NodePath("MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer5/RenderingScaleSetting")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Display" type="TabBar" parent="MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Display"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+columns = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResolutionLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resolution: "
+
+[node name="ResolutionSetting" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer" instance=ExtResource("2_hs75q")]
+layout_mode = 2
+options = Array[String](["640x480", "800x480", "800x600", "960x540", "1024x768", "1280x720", "1980x1080"])
+game_settings_callback = "set_resolution"
+setting_data_section = "display"
+setting_data_label = "resolution"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VsyncLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+text = "V-sync: "
+
+[node name="VsyncSetting" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer2" instance=ExtResource("2_6lwg8")]
+layout_mode = 2
+game_settings_callback = "set_vsync"
+setting_data_section = "display"
+setting_data_label = "vsync"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="FullscreenLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Fullscreen:"
+
+[node name="FullscreenSetting" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer3" instance=ExtResource("2_6lwg8")]
+layout_mode = 2
+game_settings_callback = "set_fullscreen"
+setting_data_section = "display"
+setting_data_label = "fullscreen"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="FPSLimitLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer4"]
+layout_mode = 2
+text = "FPS Limit:"
+
+[node name="FPSLimitSetting" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer4" instance=ExtResource("2_hs75q")]
+layout_mode = 2
+options = Array[String](["Unlimited", "15 FPS", "25 FPS", "30 FPS", "40 FPS", "60 FPS", "90 FPS", "120 FPS"])
+game_settings_callback = "set_fps_limit"
+setting_data_section = "display"
+setting_data_label = "fps_limit"
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="RenderiingScaleLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer5"]
+layout_mode = 2
+text = "Rendering Scale:"
+
+[node name="RenderingScaleSetting" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/GridContainer/VBoxContainer5" instance=ExtResource("4_mpqnh")]
+layout_mode = 2
+slider_max_value = 1.0
+slider_step = 0.1
+game_settings_callback = "set_rendering_scale"
+setting_data_section = "display"
+setting_data_label = "rendering_scale"
+
+[node name="Audio" type="TabBar" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+columns = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MasterAudioLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Master:"
+
+[node name="MasterVolumeSetting" parent="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/GridContainer/VBoxContainer" instance=ExtResource("5_uk00f")]
+layout_mode = 2
+game_settings_callback = "set_master_volume"
+setting_data_section = "audio"
+setting_data_label = "master"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SFXAudioLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+text = "SFX:"
+
+[node name="SFXVolumeSetting" parent="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/GridContainer/VBoxContainer2" instance=ExtResource("5_uk00f")]
+layout_mode = 2
+game_settings_callback = "set_sfx_volume"
+setting_data_section = "audio"
+setting_data_label = "sfx"
+
+[node name="Controls" type="TabBar" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+columns = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MouseSensitivityLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mouse sensitivity:"
+
+[node name="MouseSensitivitySettingSlider" parent="MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer/GridContainer/VBoxContainer" instance=ExtResource("4_mpqnh")]
+layout_mode = 2
+game_settings_callback = "set_mouse_sensitivity"
+setting_data_section = "controls"
+setting_data_label = "mouse_sensitivity"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MouseFilterLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Mouse filter:"
+
+[node name="MouseFilterSetting" parent="MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer/GridContainer/VBoxContainer2" instance=ExtResource("2_6lwg8")]
+layout_mode = 2
+game_settings_callback = "set_mouse_filter"
+setting_data_section = "controls"
+setting_data_label = "mouse_filter"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="ApplyButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Apply"
+
+[node name="ReturnButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Return"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ApplyButton" to="." method="_on_apply_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
