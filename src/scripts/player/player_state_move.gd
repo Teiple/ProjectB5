@@ -120,9 +120,7 @@ func process(delta):
 	# Mantling
 	# Prevent the player from mantling while grabbing some object
 	var grab_component := Component.find_component(player, GrabComponent.get_component_name()) as GrabComponent
-	var is_grabbing = false
-	if grab_component:
-		is_grabbing = grab_component.current_object != null
+	var is_grabbing = grab_component && grab_component.is_grabbing()
 	
 	if can_mantle && !is_grabbing && Input.is_action_pressed("jump") && try_mantling():
 		return
@@ -155,7 +153,7 @@ func is_stucked_in_crouching_mode() -> bool:
 	player.crouch_toggle_space_check.position.y = player.standing_collision_shape.height * 0.5
 	player.crouch_toggle_space_check.target_position = Vector3.ZERO
 	
-	# Ignore the grabbed object (if there is one)  when it's hanging the player head
+	# Ignore the grabbed object (if there is one)  when the grabbed object is hanging the player head
 	var grab_component := Component.find_component(player, GrabComponent.get_component_name()) as GrabComponent
 	if grab_component != null:
 		if grab_component.current_object != null:

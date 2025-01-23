@@ -465,6 +465,9 @@ transform = Transform3D(0.946655, -0.151019, 0.284672, 0.322249, 0.44364, -0.836
 [node name="TestBox" parent="." instance=ExtResource("27_80vvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.03135, 1.49686, -1.65751)
 
+[node name="TestBox2" parent="." instance=ExtResource("27_80vvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.59483, 1.49686, -1.65751)
+
 [node name="BulletTrailPool" parent="." instance=ExtResource("28_ayn78")]
 max_size = 10
 

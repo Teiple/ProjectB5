@@ -143,5 +143,9 @@ func take_weapon(weapon : Weapon):
 	state_machine.transition_to("Base/Equip")
 
 func take(object : Node3D):
+	var grab_component := Component.find_component(player, GrabComponent.get_component_name()) as GrabComponent
+	# Don't pick up things if our hands are busy
+	if (grab_component && grab_component.is_grabbing()):
+		return
 	if object is Weapon:
 		take_weapon(object)

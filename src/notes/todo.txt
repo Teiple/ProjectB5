@@ -1,8 +1,15 @@
-Fix: Stepping down can happen immediatly after stepping up stairs at the corner
--> Fixed by forcing a duration right after the stepping up action in which the stepping down action cannot be taken place
-Fix: Player can mantle through solid bodies ontop of them
--> Fixed by set the mantle raycast's local y position to be the player's head's local y position when detecting
+Bug: Stepping down can happen immediatly after stepping up stairs at the corner
+-> Fixed: by forcing a duration right after the stepping up action in which the stepping down action cannot be taken place
+Bug: Player can mantle through solid bodies ontop of them
+-> Fixed: by set the mantle raycast's local y position to be the player's head's local y position when detecting
 Add: Player's movement sounds (footsteps, jumping, landing)
+-> Added
 Add: A basic weapon controller
-Fix: Proper footsteps on stairs
+-> Added
+Bug: Proper footsteps on stairs
 -> Fixed
+Bug: Allow player to shoot from the center of the screen if the weapon's muzzle is clipping   
+-> Fixed
+Bug: Object grabbing mechanic will be jitter once the mouse filter are turned off
+Bug: Player switch to equip animation when grabbing something. Suggestions: Either drop the grabbed object when equipping weapons or don't allow that
+-> Fixed: by not allowing player to pick up anything if they are grabbing an object

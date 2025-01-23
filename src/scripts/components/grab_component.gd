@@ -196,3 +196,6 @@ func get_nearest_grab_direction(obj : PhysicsObject, grab_direction : Vector3):
 
 func get_grab_point():
 	return player.head.global_position - player.head.global_basis.z * grab_distance
+
+func is_grabbing() -> bool:
+	return current_object != null

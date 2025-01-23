@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c4k2kcfhr6hjf"]
+[gd_scene load_steps=30 format=3 uid="uid://c4k2kcfhr6hjf"]
 
 [ext_resource type="Script" path="res://src/scripts/player/player.gd" id="1_numrv"]
 [ext_resource type="Script" path="res://src/scripts/player/head.gd" id="2_evelg"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://fvr638awgdw3" path="res://src/scenes/components/objects_pusher_component.tscn" id="18_aic4s"]
 [ext_resource type="PackedScene" uid="uid://b70ye5t8vg3w" path="res://src/scenes/components/player_static_collider_component.tscn" id="18_b24wr"]
 [ext_resource type="PackedScene" uid="uid://blbjkmy2exy74" path="res://src/scenes/components/grab_component.tscn" id="18_df7fm"]
+[ext_resource type="PackedScene" uid="uid://dgu4l17ebrwrr" path="res://src/scenes/components/player_leaning_component.tscn" id="18_ev6j0"]
 [ext_resource type="PackedScene" uid="uid://bpyeva0mhelgn" path="res://src/scenes/components/debug/debug_collision_shapes_component.tscn" id="18_kd64k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_an1su"]
@@ -101,10 +102,7 @@ land_shake_curve = SubResource("Curve_8yl8t")
 max_mantle_shake_amount = -0.11
 mantle_shake_curve = SubResource("Curve_85aky")
 
-[node name="CameraSmoother" type="Node3D" parent="Head/HeadBob/CameraShaker"]
-unique_name_in_owner = true
-
-[node name="Camera" type="Camera3D" parent="Head/HeadBob/CameraShaker/CameraSmoother"]
+[node name="Camera" type="Camera3D" parent="Head/HeadBob/CameraShaker"]
 unique_name_in_owner = true
 current = true
 fov = 80.0
@@ -223,3 +221,5 @@ editor_description = "Allows player to grab some physical objects.
 This node need to be a direct child of player"
 
 [node name="Hud" parent="." instance=ExtResource("12_mojfe")]
+
+[node name="PlayerLeaningComponent" parent="." instance=ExtResource("18_ev6j0")]

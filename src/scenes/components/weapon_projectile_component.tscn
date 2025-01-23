@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce6pbu7237qay"]
+[gd_scene load_steps=3 format=3 uid="uid://ce6pbu7237qay"]
 
 [ext_resource type="Script" path="res://src/scripts/components/weapon_projectile_component.gd" id="1_aapiq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6vmkc"]
+radius = 0.1
 
 [node name="WeaponProjectileComponent" type="Node3D"]
 script = ExtResource("1_aapiq")
@@ -9,3 +12,9 @@ script = ExtResource("1_aapiq")
 enabled = false
 exclude_parent = false
 collision_mask = 25
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+enabled = false
+shape = SubResource("SphereShape3D_6vmkc")
+target_position = Vector3(0, 0, 0)
+collision_mask = 17

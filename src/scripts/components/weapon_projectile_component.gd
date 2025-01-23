@@ -6,6 +6,7 @@ class_name WeaponProjectileComponent
 
 @onready var weapon : Weapon = owner
 @onready var raycast : RayCast3D = $RayCast3D
+@onready var clipping_shapecast : ShapeCast3D = $ShapeCast3D
 
 var max_distance := 100.0
 var shooting_angle := Vector2.ZERO
@@ -26,9 +27,9 @@ func _on_fire_requested():
 		shoot_one_shot()
 
 func _aim_raycast():
-	var user_is_player = weapon.state_machine.get_current_state_path() == "UsedByPlayer/Selected"
+	var used_by_player = weapon.state_machine.get_current_state_path() == "UsedByPlayer/Selected"
 	# if not, user is an npc
-	if user_is_player:
+	if used_by_player:
 		add_exceptions_for_user(Global.current_game().player())
 	
 	var start_pnt = aim_starting_point()
@@ -52,27 +53,43 @@ func shoot_one_shot():
 	var fly_direcion = -raycast.global_basis.z
 	
 	var projectile_pool := Global.current_game().get_node_or_null(ProjectilePool.get_pool_name()) as ProjectilePool
+	
+	var used_by_player = weapon.state_machine.get_current_state_path() == "UsedByPlayer/Selected"
+	
 	var set_up_info := {
 		"start_position" : start_position,
 		"fly_direction" : fly_direcion,
 		"weapon_stats" : weapon.weapon_stats,
-		"projectile_speed" : weapon.weapon_stats.projectile_speed
+		"projectile_speed" : weapon.weapon_stats.projectile_speed,
+		"first_ignore": []
 		# future: attacker
 	}
+	
+	if used_by_player:
+		set_up_info["first_ignore"] = Global.current_game().player().get_hitbox_components()
+	
 	# Create projectile
 	projectile_pool.get_pooled_item(set_up_info)
 
 func projectile_starting_point() -> Vector3:
-	var use_player_camera_for_starting_point = weapon.state_machine.get_current_state_path() == "UsedByPlayer/Selected"
-	
 	if starting_point_transform != null:
+		var used_by_player = weapon.state_machine.get_current_state_path() == "UsedByPlayer/Selected"
+		# Allow player to shoot from the center of the screen if the muzzle is clipping
+		if used_by_player:
+			var camera_position = Global.current_game().player().camera.global_position
+			clipping_shapecast.global_position = starting_point_transform.global_position
+			clipping_shapecast.force_shapecast_update()
+			if !clipping_shapecast.is_colliding():
+				starting_point_transform.global_position
+			else:
+				return camera_position
 		return starting_point_transform.global_position
 	return Vector3.ZERO
 
 func aim_starting_point() -> Vector3:
-	var use_player_camera_for_starting_point = weapon.state_machine.get_current_state_path() == "UsedByPlayer/Selected"
+	var used_by_player = weapon.state_machine.get_current_state_path() == "UsedByPlayer/Selected"
 	
-	if use_player_camera_for_starting_point:
+	if used_by_player:
 		return Global.current_game().player().camera.global_position
 	if starting_point_transform != null:
 		return starting_point_transform.global_position

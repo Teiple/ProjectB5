@@ -16,9 +16,9 @@ func _ready():
 	
 	var player_health_component := Component.find_component(player, "HealthComponent") as HealthComponent
 	if player_health_component != null:
-		player.health_component.damaged.connect(update_health)
-		player.health_component.healed.connect(update_health)
-		player.health_component.died.connect(update_health)
+		player.get_health_component().damaged.connect(update_health)
+		player.get_health_component().healed.connect(update_health)
+		player.get_health_component().died.connect(update_health)
 	
 	if is_instance_valid(player.weapon_controller):
 		player.weapon_controller.weapon_fired.connect(update_ammo_counter)
@@ -26,7 +26,7 @@ func _ready():
 		player.weapon_controller.weapon_changed.connect(update_ammo_counter)
 		player.weapon_controller.weapon_reloaded.connect(update_ammo_counter)
 	
-	update_health(player.health_component)
+	update_health(player.get_health_component())
 	update_ammo_counter()
 
 func update_ammo_counter():
@@ -39,8 +39,8 @@ func update_ammo_counter():
 func update_health(health_component : HealthComponent):
 	if health_component == null:
 		return
-	var hp = ceili(player.health_component.current_health)
-	var max_hp = ceili(player.health_component.max_health)
+	var hp = ceili(player.get_health_component().current_health)
+	var max_hp = ceili(player.get_health_component().max_health)
 	health.text = "[ + ] %d/%d" % [hp, max_hp]
 
 func _process(delta):

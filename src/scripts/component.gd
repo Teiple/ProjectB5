@@ -35,6 +35,7 @@ static func find_component(node : Node, component_name : String):
 		return node.get_meta(component_name)
 	return null
 
+# Please don't use get_component_array_name() for the component_name
 static func find_component_array(node : Node, component_name : String) -> Array:
 	var component_arr = component_name + COMPONENT_ARRAY_SUFFIX
 	if node.has_meta(component_arr):
