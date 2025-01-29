@@ -16,6 +16,7 @@ signal step
 #@export_range(0.0, 1.0, 0.001) var in_air_speed_reduction := 0.5
 @export var in_air_acceleration := 12.0
 @export_range(0.0, 1.0, 0.001) var crouch_speed_reduction := 0.35
+@export_range(1.0, 10.0, 0.001) var sprint_speed_multiplier := 1.3
 @export var coyote_time := 0.2
 @export var jump_buffer_time := 0.2
 @export var standing_collision_shape : CapsuleShape3D = CapsuleShape3D.new()

@@ -9,7 +9,10 @@ func physics_process(delta):
 	if player.is_crouching():
 		base_state.speed = player.move_speed * (1.0 - player.crouch_speed_reduction)
 	else:
-		base_state.speed = player.move_speed
+		if (Input.is_action_pressed("sprint")):
+			base_state.speed = player.move_speed * player.sprint_speed_multiplier
+		else:
+			base_state.speed = player.move_speed
 	
 	if !player.is_on_floor():
 		# Transition: Run -> Air

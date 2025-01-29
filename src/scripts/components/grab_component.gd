@@ -12,6 +12,7 @@ signal released(obj : PhysicsObject)
 @export var break_distance := 2.0
 @export var release_speed_multiplier := 0.5
 @export var release_max_speed := 5.0
+#@export var grab_smooth_speed := 30.0
 @export_flags_3d_physics var grabbed_collision_layer := 0
 @export_flags_3d_physics var grabbed_collision_mask := 0
 
@@ -123,7 +124,7 @@ func _physics_process(delta: float) -> void:
 	if current_object == null:
 		return
 	
-	var grab_point = get_grab_point()
+	var grab_point = get_grab_point() #lerp(last_grab_point, get_grab_point(), grab_smooth_speed * delta)
 	drag_velocity = (grab_point - last_grab_point) / delta
 	last_grab_point = grab_point
 	

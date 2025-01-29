@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6m4c3dqb3uou"]
+
+[ext_resource type="Script" path="res://src/scripts/components/compound_particle_effect_player_component.gd" id="1_bh7e7"]
+
+[node name="CompoundParticleEffectPlayerComponent" type="Node3D"]
+script = ExtResource("1_bh7e7")
+unique = false

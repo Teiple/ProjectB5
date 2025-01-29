@@ -27,7 +27,7 @@ func _on_player_mantled(mantle_position : Vector3):
 
 func shake_on_global_y(offset : float, curve : Curve, amplitude : float):
 	var offset_value = curve.sample(offset) * amplitude
-	global_position = player.global_position
+	global_position = get_parent().global_position
 	global_position.y = player.head.global_position.y + offset_value
 
 func shake_x_rotation(offset : float, curve : Curve, amplitude : float):

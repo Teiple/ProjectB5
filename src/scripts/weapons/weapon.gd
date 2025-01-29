@@ -44,6 +44,7 @@ signal melee_requested
 @onready var anim_player : AnimationPlayer = get_child(0).get_node("AnimationPlayer")
 @onready var pickup_zone : Zone = $PickupZone
 @onready var state_machine : StateMachine = $WeaponStateMachine
+@onready var muzzle_flash_effect: CompoundParticleEffectPlayerComponent = $MuzzlePoint/CompoundParticleEffectPlayerComponent
 
 var last_firing_time := 0.0
 
@@ -108,6 +109,7 @@ func can_weapon_reload() -> bool:
 func fire():
 	last_firing_time = CustomTime.time
 	current_ammo -= 1
+	muzzle_flash_effect.play_all()
 	fire_requested.emit()
 
 func melee():
@@ -170,5 +172,3 @@ func shader_cache_fetch_material_meshes(material_property : String) -> Array[Mes
 
 func _get_weapon_mesh() -> MeshInstance3D: 
 	return get_child(0).get_child(0).get_child(0).get_child(0) as MeshInstance3D
-
-	

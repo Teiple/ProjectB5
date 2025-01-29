@@ -10,6 +10,7 @@ Bug: Proper footsteps on stairs
 -> Fixed
 Bug: Allow player to shoot from the center of the screen if the weapon's muzzle is clipping   
 -> Fixed
-Bug: Object grabbing mechanic will be jitter once the mouse filter are turned off
+Improvement: Object grabbing mechanic will be jitter once the mouse filter are turned off. Suggestions: Turn on mouse filter when grabbing
+-> Ignored at the time
 Bug: Player switch to equip animation when grabbing something. Suggestions: Either drop the grabbed object when equipping weapons or don't allow that
 -> Fixed: by not allowing player to pick up anything if they are grabbing an object
